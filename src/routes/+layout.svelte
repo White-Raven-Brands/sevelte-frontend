@@ -116,21 +116,21 @@ div#navbarSupportedContent {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">about</a>
+          <a class="nav-link active" aria-current="page" href="#what-we-do">about</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#">Shop Now</a>
+        </li> -->
+		  <li class="nav-item">
+          <a class="nav-link" href="#faqs">f.a.qs</a>
         </li>
 		  <li class="nav-item">
-          <a class="nav-link" href="#">f.a.qs</a>
+          <a class="nav-link" href="#benefits">Benefits</a>
         </li>
-		  <li class="nav-item">
-          <a class="nav-link" href="#">Benefits</a>
-        </li>
-       
+        <!-- <li ><a class="nav-link" href="#pickup-form">contact us</a></li> -->
       </ul>
       <div class="contact-btn">
-	  	<button>contact us</button>
+	  	<button><a href="#pickup-form">contact us</a></button>
 	  </div>
     </div>
   </div>

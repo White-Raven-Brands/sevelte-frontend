@@ -16,8 +16,11 @@
 		"vite": "^5.0.3"
 	},
 	"dependencies": {
+		"@sanity/client": "^6.22.5",
+		"@sanity/image-url": "^1.1.0",
+		"@sendgrid/mail": "^8.1.4",
 		"@svelte-add/bootstrap": "^1.0.17",
-		"svelte-mui": "^0.5.12",
-		"svelte-table": "^0.6.3"
+		"svelte-table": "^0.6.3",
+		"zod": "^3.23.8"
 	}
 }
