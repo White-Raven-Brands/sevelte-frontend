@@ -15,6 +15,7 @@
 
   import { z } from "zod";
   import { contactFormSchema, sanityClient, urlFor } from "$lib/sanity";
+    // import { sendMail } from "$lib/server/email-config";
 
   // Initialize form data
   let formData = {
@@ -72,6 +73,28 @@
       }
       return false;
     }
+  };
+
+  async function handleSendEmail(email) {
+    try {
+      const response = await fetch('/api/send-mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('Email sent successfully:', result);
+      } else {
+        console.error('Error sending email:', result.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
 
   // Form submission handler
@@ -106,6 +129,7 @@
           // Success scenario
           submissionMessage = "Form submitted successfully!";
           submissionStatus = "success";
+          handleSendEmail(formData.email)
           setTimeout(() => {
             submissionMessage = "";
             // messageElement.style.display = "none";
