@@ -262,6 +262,7 @@
 
 
 <div class="page-body">
+
   <section class="banner-section" style="--background-url: url({mainSectionImage});" >
     <style>
       .banner-section::before {
@@ -347,7 +348,7 @@
                 <div class="rate-pattles">
                   {#each storageRates?.rateOptions as option}
                     <h4>{option.title}</h4>
-                    <div style="display: flex;"><h5>{option.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">/{option.price.split('/')[1]}</p></div>
+                    <div style="display: flex; align-items:end"><h5>{option.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">/{option.price.split('/')[1]}</p></div>
                     <a href="#pickup-form"
                       >{option.ctaText} <img src={right} alt="" /></a
                     >
