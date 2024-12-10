@@ -813,6 +813,9 @@
                 placeholder="Storage Start Date"
                 bind:value={formData.storage_start_date}
               />
+              {#if errors.storage_start_date}
+                <span class="error">{errors.storage_start_date}</span>
+              {/if}
             </div>
           </div>
 
@@ -824,6 +827,9 @@
                 placeholder="Storage End Date"
                 bind:value={formData.storage_end_date}
               />
+              {#if errors.storage_end_date}
+                <span class="error">{errors.storage_end_date}</span>
+              {/if}
             </div>
           </div>
 

@@ -42,6 +42,7 @@ export const contactFormSchema = z.object({
 }).refine(
   (data) => {
     // Check if both dates are present and storage_end_date >= storage_start_date
+    console.log(typeof data.storage_end_date)
     if (data.storage_start_date && data.storage_end_date) {
       return data.storage_end_date >= data.storage_start_date;
     }
