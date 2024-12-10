@@ -888,7 +888,7 @@
         <div class="col-md-8">
           <div class="footer-right">
             <ul>
-              <li><a href="#">about</a></li>
+              <li><a href="#what-we-do">about</a></li>
               <!-- <li><a href="#">Shop Now</a></li> -->
               <li><a href="#faqs">f.a.qs</a></li>
               <li><a href="#benefits">Benefits</a></li>
