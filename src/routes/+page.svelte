@@ -347,7 +347,7 @@
                 <div class="rate-pattles">
                   {#each storageRates?.rateOptions as option}
                     <h4>{option.title}</h4>
-                    <h5>{option.price}</h5>
+                    <div style="display: flex;"><h5>{option.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">/{option.price.split('/')[1]}</p></div>
                     <a href="#pickup-form"
                       >{option.ctaText} <img src={right} alt="" /></a
                     >
@@ -418,10 +418,10 @@
               </li>
               {#each shippingSurcharges?.surcharges as item}
                 <li>
-                  <span>{item.item}</span>
-                  <span>{item.itemFee}</span>
+                  <span >{item.item}</span>
+                  <span class="flex-center">{item.itemFee}</span>
                   <span>{item.locations.join(", ")}</span>
-                  <span>{item.locationFee}</span>
+                  <span class="flex-center">{item.locationFee}</span>
                 </li>
               {/each}
               <!--<li>
@@ -918,7 +918,7 @@
     /* background-image: url("$lib/assets/images/banerbox.png"); */
     /* background-image: url({main}); */
     background-repeat: no-repeat;
-    bottom: -230px;
+    bottom: -200px;
     right: 0px;
     width: 100%;
     height: 100%;
@@ -1079,9 +1079,14 @@
     padding: 0;
     margin: 18px 0 0;
   }
+  .flex-center{
+    justify-content: center;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
   .shipping-right ul li {
     color: #fff;
-    font-size: 17px;
+    font-size: 14px;
     /* text-transform: uppercase; */
     list-style: none;
     display: flex;
@@ -1089,8 +1094,11 @@
   }
   .shipping-right ul li span {
     border: 1px solid #fff;
-    padding: 12px 10px 12px 20px;
+    padding: 4px 6px 4px 14px;
     text-align: left;
+    min-height: 52px;
+    align-items: center;
+    display: flex;
     /* text-transform: none !important; */
   }
   .text-upper{
