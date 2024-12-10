@@ -385,7 +385,7 @@
                 <div class="rate-pattles">
                   {#each shippingRates?.rateDetails as rate}
                     <h4>{rate.title}</h4>
-                    <h5>{rate.price}</h5>
+                    <div style="display: flex; align-items:end"><h5>{rate.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">{(rate.price.split('/').length>1) ? `/${rate.price.split('/')[1]}`:''} </p></div>
                   {/each}
                   <!-- <h4>additional pallets</h4>
                   <h5>$45 <span>/each</span></h5> -->
