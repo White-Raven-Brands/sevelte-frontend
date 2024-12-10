@@ -39,7 +39,19 @@ export const contactFormSchema = z.object({
     storage_end_date: z.date().optional(),
     need_other_services: z.string().optional(),
     additional_info: z.string().optional()
-});
+}).refine(
+  (data) => {
+    // Check if both dates are present and storage_end_date >= storage_start_date
+    if (data.storage_start_date && data.storage_end_date) {
+      return data.storage_end_date >= data.storage_start_date;
+    }
+    return true; // If one of the dates is missing, no validation error
+  },
+  {
+    message: "End date cannot be earlier than start date.",
+    path: ["storage_end_date"], // This points the error to storage_end_date
+  }
+);
 
 const builder = imageUrlBuilder(sanityClient);
 
