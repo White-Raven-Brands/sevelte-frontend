@@ -6,6 +6,10 @@
 button.navbar-toggler {
     display: none;
 }
+.button_link{
+  color: #000;
+  text-decoration: none;
+}
 .collapse:not(.show) {
     display: flex;
 	
@@ -130,7 +134,7 @@ div#navbarSupportedContent {
         <!-- <li ><a class="nav-link" href="#pickup-form">contact us</a></li> -->
       </ul>
       <div class="contact-btn">
-	  	<button><a href="#pickup-form">contact us</a></button>
+	  	<button ><a class="button_link" href="#pickup-form">contact us</a></button>
 	  </div>
     </div>
   </div>

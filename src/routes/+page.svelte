@@ -172,11 +172,14 @@
   }
 
   let mainSectioncontent = null;
+  let mainSectionImage = null;
   async function fetchMainSection() {
     try {
       const result = await sanityClient.fetch('*[_type == "main-section"][0]');
 
-      mainSectioncontent = result.content;
+      mainSectioncontent = result;
+      console.log(urlFor(result.main_image).url());
+      mainSectionImage=urlFor(result.main_image).url();
     } catch (error) {
       console.error("Error fetching storage settings:", error);
     }
@@ -195,10 +198,11 @@
   }
   fetchWhatWeDo();
   let storageRates = null;
+  let our_rate_image=null;
   async function fetchStorageRates() {
     try {
       const result = await sanityClient.fetch('*[_type == "storageRates"][0]');
-
+      our_rate_image=urlFor(result?.our_rates_image).url();
       storageRates = result;
     } catch (error) {
       console.error("Error fetching storage settings:", error);
@@ -232,10 +236,11 @@
   }
   fetchShippingSurcharges();
   let faqs = null;
+  let faq_img=null;
   async function fetchFaqs() {
     try {
       const result = await sanityClient.fetch('*[_type == "faqs"][0]');
-
+      faq_img= urlFor(result?.faq_image).url();
       faqs = result;
     } catch (error) {
       console.error("Error fetching storage settings:", error);
@@ -246,7 +251,7 @@
   async function fetchbenefits() {
     try {
       const result = await sanityClient.fetch('*[_type == "benefits"][0]');
-      console.log(result);
+      // console.log(result);
       benefits = result;
     } catch (error) {
       console.error("Error fetching storage settings:", error);
@@ -255,16 +260,21 @@
   fetchbenefits();
 </script>
 
+
 <div class="page-body">
-  <section class="banner-section">
+  <section class="banner-section" style="--background-url: url({mainSectionImage});" >
+    <style>
+      .banner-section::before {
+        background-image: var(--background-url);
+      }
+    </style>
     <div class="container">
       <div class="row">
         <div class="col-md-7">
           <div class="left-banner">
             <h2>
-              <!-- We’ll <span>store your<br /> PALLETIZED ITEMS</span><br /> until
-              you are ready<br /> for them -->
-              {mainSectioncontent}
+              {mainSectioncontent?.beforeColored} <span>{mainSectioncontent?.Colored_content}</span><br /> {mainSectioncontent?.afterColored}
+              <!-- {mainSectioncontent} -->
             </h2>
             <div class="banner-links">
               <a href="#se-our-rate"
@@ -314,7 +324,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="rate-left">
-            <img src={rateimg} alt="" />
+            <img src={our_rate_image} alt="" />
           </div>
         </div>
 
@@ -398,13 +408,13 @@
         </div>
         <div class="col-md-9">
           <div class="shipping-right">
-            <h3>Shipping surcharges:</h3>
+            <h3>{shippingSurcharges?.heading}:</h3>
             <ul>
-              <li>
-                <span>Items</span>
-                <span>Item Fee</span>
-                <span>Location surcharges:</span>
-                <span>Fee</span>
+              <li class="item-heading">
+                <span class="text-upper">Items</span>
+                <span class="text-upper">Item Fee</span>
+                <span class="text-upper">Location surcharges:</span>
+                <span class="text-upper">Fee</span>
               </li>
               {#each shippingSurcharges?.surcharges as item}
                 <li>
@@ -485,7 +495,7 @@
         </div>
         <div class="col-md-6">
           <div class="accordion-image">
-            <img src={accord} alt="" />
+            <img src={faq_img} alt="" />
           </div>
         </div>
       </div>
@@ -499,8 +509,8 @@
         {#each benefits?.benefitItems as item}
           <div class="col-md-4">
             <div class="benifit-inner">
-              <img src={urlFor(item.icon).url()} alt="" />
-              <h4>{item.title}</h4>
+              <img class='benefits-icn' src={urlFor(item.icon).url()} alt="" />
+              <h4 class="benefits-title">{item.title}</h4>
             </div>
           </div>
         {/each}
@@ -905,7 +915,8 @@
   section.banner-section::before {
     content: "";
     position: absolute;
-    background-image: url("$lib/assets/images/banerbox.png");
+    /* background-image: url("$lib/assets/images/banerbox.png"); */
+    /* background-image: url({main}); */
     background-repeat: no-repeat;
     bottom: -230px;
     right: 0px;
@@ -984,8 +995,9 @@
     color: #fffdf0;
     font-size: 18px;
     font-weight: 900;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
   }
+  
   .banner-links {
     display: flex;
     align-items: center;
@@ -1070,7 +1082,7 @@
   .shipping-right ul li {
     color: #fff;
     font-size: 17px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     list-style: none;
     display: flex;
     align-items: center;
@@ -1079,6 +1091,10 @@
     border: 1px solid #fff;
     padding: 12px 10px 12px 20px;
     text-align: left;
+    /* text-transform: none !important; */
+  }
+  .text-upper{
+    text-transform: uppercase;
   }
   .shipping-right ul li:first-child span {
     border: 0;
@@ -1561,4 +1577,15 @@
     background-color: #f2dede;
     color: #a94442;
   }
+  .benefits-icn{
+    background: #ffc600;
+    padding: 18px;
+    height: 70px;
+    width:70px;
+  }
+  .benefits-title {
+    max-width: 288px;
+    margin: 0 auto;
+  }
+ 
 </style>
