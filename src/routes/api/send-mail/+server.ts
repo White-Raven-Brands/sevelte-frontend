@@ -41,7 +41,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
       const requestBody = {
           from: {
-              email: "example@sendgrid.net", // Replace with your "from" email
+              email: "sumitkumar19016@gmail.com", // Replace with your "from" email
           },
           personalizations: [
               {
