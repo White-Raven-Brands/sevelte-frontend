@@ -35,8 +35,8 @@ export const contactFormSchema = z.object({
     pallets_number: z.number().positive({ message: "Number of pallets must be positive" }),
     average_wxlxh_of_pallets: z.string().optional(),
     total_weight: z.number().positive({ message: "Total weight must be positive" }),
-    storage_start_date: z.date().optional(),
-    storage_end_date: z.date().optional(),
+    storage_start_date: z.date({message:"Please enter the start date"}),
+    storage_end_date: z.date({message:"Please enter the end date"}),
     need_other_services: z.string().optional(),
     additional_info: z.string().optional()
 }).refine(
