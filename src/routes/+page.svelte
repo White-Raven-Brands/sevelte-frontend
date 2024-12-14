@@ -12,7 +12,7 @@
   import accord from "$lib/assets/images/accord.png";
   import plus from "$lib/assets/images/plus.svg";
   import minus from "$lib/assets/images/minus.svg";
-
+  import rdArrow from "$lib/assets/images/rdarrow.svg";
   import { z } from "zod";
   import { contactFormSchema, sanityClient, urlFor } from "$lib/sanity";
     // import { sendMail } from "$lib/server/email-config";
@@ -1566,7 +1566,7 @@ section#pickup-form input:focus::-ms-input-placeholder { /* Edge 12 -18 */
 
           <div class="col-md-12">
             <div class="form-group">
-              <button type="submit">Submit Form<img src="/src/lib/assets/images/rdArrow.svg"/></button>
+              <button type="submit">Submit Form<img src={rdArrow} alt=''/></button>
             </div>
           </div>
         </div>
