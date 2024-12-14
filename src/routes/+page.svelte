@@ -260,657 +260,19 @@
   fetchbenefits();
 </script>
 
-
-<div class="page-body">
-
-  <section class="banner-section" style="--background-url: url({mainSectionImage});" >
-    <style>
-      .banner-section::before {
-        background-image: var(--background-url);
-      }
-    </style>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7">
-          <div class="left-banner">
-            <h2>
-              {mainSectioncontent?.beforeColored} <span>{mainSectioncontent?.Colored_content}</span><br /> {mainSectioncontent?.afterColored}
-              <!-- {mainSectioncontent} -->
-            </h2>
-            <div class="banner-links">
-              <a href="#se-our-rate"
-                >see our rates <img src={right} alt="" />
-              </a>
-              <a href="#pickup-form">pickup form <img src={right} alt="" /></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="what-we-do" class="what-we-do">
-    <div class="container">
-      <h3>What we do</h3>
-      <p>
-        {whatWeDo?.content}
-      </p>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="what-do-inner">
-            <img src={whatone} alt="" />
-            <h5>{whatWeDo?.firstHeading}</h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="what-do-inner">
-            <img src={whattwo} alt="" />
-            <h5>{whatWeDo?.secondHeading}</h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="what-do-inner">
-            <img src={whatthree} alt="" />
-            <h5>{whatWeDo?.thirdHeading}</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="se-our-rate" class="our-rate">
-    <div class="container">
-      <h3>Our Rates</h3>
-      <hr />
-      <div class="row">
-        <div class="col-md-3">
-          <div class="rate-left">
-            <img src={our_rate_image} alt="" />
-          </div>
-        </div>
-
-        <div class="col-md-9">
-          <div class="rate-right">
-            <div class="row">
-              <div class="col-md-7">
-                <div class="rate-block">
-                  <h5>{storageRates?.heading}</h5>
-                  <p>
-                    {storageRates?.description[0]?.children[0].text}
-                  </p>
-                  <p>
-                    {storageRates?.description[1]?.children[0].text}
-                  </p>
-                  <h6>No handling fees!</h6>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="rate-pattles">
-                  {#each storageRates?.rateOptions as option}
-                    <h4>{option.title}</h4>
-                    <div style="display: flex; align-items:end"><h5>{option.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">/{option.price.split('/')[1]}</p></div>
-                    <a href="#pickup-form"
-                      >{option.ctaText} <img src={right} alt="" /></a
-                    >
-                  {/each}
-
-                  <!-- <h4>pallets up to 96” h</h4>
-                  <h5>$60 <span>/month</span></h5>
-                  <a href="#">buy space now <img src={right} alt="" /></a> -->
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-7">
-                <div class="rate-block">
-                  <h5>{shippingRates?.heading}</h5>
-                  {#each shippingRates?.description as description}
-                    <p>
-                      {description?.children[0].text}
-                    </p>
-                  {/each}
-                  <!-- <p>
-                    {shippingRates?.description[1]?.children[0].text}
-                  </p>
-                  <p>
-                    The Pallet Hut can receive less than container loads (LCL),
-                    or full container/trailer loads (FCL), and store the
-                    palletized items until you are ready to move them again.
-                    When you are, complete the ship request form we’ll have your
-                    pallets moving within 1 business day.
-                  </p> -->
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="rate-pattles">
-                  {#each shippingRates?.rateDetails as rate}
-                    <h4>{rate.title}</h4>
-                    <div style="display: flex; align-items:end"><h5>{rate.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">{(rate.price.split('/').length>1) ? `/${rate.price.split('/')[1]}`:''} </p></div>
-                  {/each}
-                  <!-- <h4>additional pallets</h4>
-                  <h5>$45 <span>/each</span></h5> -->
-                  <a href="#pickup-form"
-                    >move pallets now <img src={right} alt="" /></a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="shipping-sec">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="shipping-left"></div>
-        </div>
-        <div class="col-md-9">
-          <div class="shipping-right">
-            <h3>{shippingSurcharges?.heading}:</h3>
-            <ul>
-              <li class="item-heading">
-                <span class="text-upper">Items</span>
-                <span class="text-upper">Item Fee</span>
-                <span class="text-upper">Location surcharges:</span>
-                <span class="text-upper">Fee</span>
-              </li>
-              {#each shippingSurcharges?.surcharges as item}
-                <li>
-                  <span >{item.item}</span>
-                  <span class="flex-center">{item.itemFee}</span>
-                  <span>{item.locations.join(", ")}</span>
-                  <span class="flex-center">{item.locationFee}</span>
-                </li>
-              {/each}
-              <!--<li>
-                <span>Power tailgate</span>
-                <span>Add $25</span>
-                <span>Tsawwassen, UBC, SFU</span>
-                <span>Add $20</span>
-              </li>
-              <li>
-                <span>Power tailgate</span>
-                <span>Add $25</span>
-                <span>Tsawwassen, UBC, SFU</span>
-                <span>Add $20</span>
-              </li>
-              <li>
-                <span>Power tailgate</span>
-                <span>Add $25</span>
-                <span>Tsawwassen, UBC, SFU</span>
-                <span>Add $20</span>
-              </li>
-              <li>
-                <span>Power tailgate</span>
-                <span>Add $25</span>
-                <span>Tsawwassen, UBC, SFU</span>
-                <span>Add $20</span>
-              </li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section  id="faqs" class="faqs-sec">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <div class="faq-left">
-            <h3>{faqs?.heading}</h3>
-            <div class="accordion" id="accordionExample">
-              {#each faqs?.questions as item, index}
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id={`headingOne${index}`}>
-                    <button
-                      class="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target={`#collapseOne-${index}`}
-                      aria-expanded="true"
-                      aria-controls={`collapseOne${index}`}
-                    >
-                      {item.question}
-                      <span class="plus"><img src={plus} alt="" /></span>
-                      <span class="minus"><img src={minus} alt="" /></span>
-                    </button>
-                  </h2>
-                  <div
-                    id={`collapseOne-${index}`}
-                    class="accordion-collapse collapse"
-                    aria-labelledby={`headingOne${index}`}
-                    data-bs-parent="#accordionExample"
-                  >
-                    <div class="accordion-body">
-                      <strong>{item.answer}</strong>
-                    </div>
-                  </div>
-                </div>
-              {/each}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="accordion-image">
-            <img src={faq_img} alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="benefits" class="benifits-sec">
-    <div class="container">
-      <h3>{benefits?.heading}:</h3>
-      <div class="row">
-        {#each benefits?.benefitItems as item}
-          <div class="col-md-4">
-            <div class="benifit-inner">
-              <img class='benefits-icn' src={urlFor(item.icon).url()} alt="" />
-              <h4 class="benefits-title">{item.title}</h4>
-            </div>
-          </div>
-        {/each}
-        <!-- <div class="col-md-4">
-          <div class="benifit-inner">
-            <img src={camone} alt="" />
-            <h4>Fire <br /> protection</h4>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="benifit-inner">
-            <img src={camone} alt="" />
-            <h4>Climate controlled <br />Storage</h4>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="benifit-inner">
-            <img src={camone} alt="" />
-            <h4>Sealed warehouse<br /> (no partitioning)</h4>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="benifit-inner">
-            <img src={camone} alt="" />
-            <h4>Restricted access<br /> (staff members only)</h4>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="benifit-inner">
-            <img src={camone} alt="" />
-            <h4>Centralized Location in<br /> Metro Vancouver</h4>
-          </div>
-        </div> -->
-      </div>
-    </div>
-  </section>
-
-  <section id="pickup-form" class="contact-from">
-    <div class="container">
-      <div class="contact-head">
-        <h3>General <br />Contact Form</h3>
-        <ul>
-          <li class="active"><span>contact form</span></li>
-          <li><span>pickup form</span></li>
-        </ul>
-      </div>
-
-      <!-- <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="First Name"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Last Name"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Company Name"/>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Phone #"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Email Address"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Company Address"/>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                               <select>
-                               <option>Service Requested</option>
-                                <option>Service Requested</option>
-                                 <option>Service Requested</option>
-                               </select>
-                        </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="What are you storing?"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Number of Pallets"/>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Average WxLxH of pallets"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Approx. Total Weight"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="Approx. Storage Start Date"/>
-                            </div>
-                        </div>
-
-                         <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="APPROX. STORAGE END DATE"/>
-                            </div>
-                        </div>
-                         <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" placeholder="NEED OTHER SERVICES?"/>
-                            </div>
-                        </div>
-
- <div class="col-md-12">
-                            <div class="form-group">
-                               <textarea placeholder="ADDITIONAL INFO"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                            <button type="submit">submit form <img src={rdarow} alt=""/></button>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </form> -->
-      <form on:submit|preventDefault={handleSubmit}>
-        <div class="row">
-          <!-- First Name -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="First Name"
-                bind:value={formData.first_name}
-              />
-              {#if errors.first_name}
-                <span class="error">{errors.first_name}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Last Name -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Last Name"
-                bind:value={formData.last_name}
-              />
-              {#if errors.last_name}
-                <span class="error">{errors.last_name}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Company Name -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Company Name"
-                bind:value={formData.company_name}
-              />
-            </div>
-          </div>
-
-          <!-- Phone -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Phone #"
-                bind:value={formData.phnoe_number}
-              />
-              {#if errors.phnoe_number}
-                <span class="error">{errors.phnoe_number}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Email Address"
-                bind:value={formData.email}
-              />
-              {#if errors.email}
-                <span class="error">{errors.email}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Company Address -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Company Address"
-                bind:value={formData.company_address}
-              />
-            </div>
-          </div>
-
-          <!-- Service Requested -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <select bind:value={formData.service_requested}>
-                <option value="">Select Service Area</option>
-                <option value="us-north">US-North</option>
-                <option value="us-south">US-South</option>
-                <option value="us-east">US-East</option>
-              </select>
-              {#if errors.service_requested}
-                <span class="error">{errors.service_requested}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Stored Item -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="What are you storing?"
-                bind:value={formData.what_are_you_storing}
-              />
-              {#if errors.what_are_you_storing}
-                <span class="error">{errors.what_are_you_storing}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Pallet Count -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="number"
-                placeholder="Number of Pallets"
-                bind:value={formData.pallets_number}
-              />
-              {#if errors.pallets_number}
-                <span class="error">{errors.pallets_number}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Pallet Dimensions -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Avg Pallet Dimensions (WxLxH)"
-                bind:value={formData.average_wxlxh_of_pallets}
-              />
-            </div>
-          </div>
-
-          <!-- Total Weight -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="number"
-                placeholder="Total Weight"
-                bind:value={formData.total_weight}
-              />
-              {#if errors.total_weight}
-                <span class="error">{errors.total_weight}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Storage Start Date -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="date"
-                placeholder="Storage Start Date"
-                bind:value={formData.storage_start_date}
-              />
-              {#if errors.storage_start_date}
-                <span class="error">{errors.storage_start_date}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Storage End Date -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="date"
-                placeholder="Storage End Date"
-                bind:value={formData.storage_end_date}
-              />
-              {#if errors.storage_end_date}
-                <span class="error">{errors.storage_end_date}</span>
-              {/if}
-            </div>
-          </div>
-
-          <!-- Additional Services -->
-          <div class="col-md-4">
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Need Other Services?"
-                bind:value={formData.need_other_services}
-              />
-            </div>
-          </div>
-
-          <!-- Additional Info -->
-          <div class="col-md-12">
-            <div class="form-group">
-              <textarea
-                placeholder="Additional Information"
-                bind:value={formData.additional_info}
-              ></textarea>
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            <div class="form-group">
-              <button type="submit">Submit Form</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Submission Message -->
-        {#if submissionMessage}
-          <div
-            class="submission-message"
-            class:success={submissionStatus === "success"}
-            class:error={submissionStatus === "error"}
-          >
-            {submissionMessage}
-          </div>
-        {/if}
-      </form>
-    </div>
-  </section>
-
-  <footer class="footer-main">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="footer-left">
-            <img src={logo} alt="" />
-            <p>161-3231 No. 6 Road. Richmond, BC <br /> Canada, V6V 1P6</p>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="footer-right">
-            <ul>
-              <li><a href="#what-we-do">about</a></li>
-              <!-- <li><a href="#">Shop Now</a></li> -->
-              <li><a href="#faqs">f.a.qs</a></li>
-              <li><a href="#benefits">Benefits</a></li>
-              <li><a href="#pickup-form">contact us</a></li>
-            </ul>
-            <div class="sociallink">
-              <p>storage @pallethut.ca</p>
-              <p>250-250-2500(tbd)</p>
-              <!-- <div class="social">
-                <a href="#"><img src={fb} alt="" /> </a>
-                <a href="#"><img src={insta} alt="" /> </a>
-              </div> -->
-            </div>
-            <span class="social-cirlce">Website by the social circle</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>
-
 <style>
+   section#pickup-form input:focus::placeholder {
+    opacity: 0.3;
+}
+section#pickup-form input:focus::placeholder {
+  /* color: red; */
+  opacity: 0.3; /* Firefox */
+}
+
+section#pickup-form input:focus::-ms-input-placeholder { /* Edge 12 -18 */
+  /* color: red; */
+  opacity: 0.3;
+}
   section.banner-section {
     background: #fffdf0;
     padding: 230px 0 130px;
@@ -1602,5 +964,659 @@
     max-width: 288px;
     margin: 0 auto;
   }
+
+ 
  
 </style>
+
+<div class="page-body">
+
+  <section class="banner-section" style="--background-url: url({mainSectionImage});" >
+    <style>
+      .banner-section::before {
+        background-image: var(--background-url);
+      }
+    </style>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="left-banner">
+            <h2>
+              {mainSectioncontent?.beforeColored} <span>{mainSectioncontent?.Colored_content}</span><br /> {mainSectioncontent?.afterColored}
+              <!-- {mainSectioncontent} -->
+            </h2>
+            <div class="banner-links">
+              <a href="#se-our-rate"
+                >see our rates <img src={right} alt="" />
+              </a>
+              <a href="#pickup-form">pickup form <img src={right} alt="" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="what-we-do" class="what-we-do">
+    <div class="container">
+      <h3>What we do</h3>
+      <p>
+        {whatWeDo?.content}
+      </p>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="what-do-inner">
+            <img src={whatone} alt="" />
+            <h5>{whatWeDo?.firstHeading}</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="what-do-inner">
+            <img src={whattwo} alt="" />
+            <h5>{whatWeDo?.secondHeading}</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="what-do-inner">
+            <img src={whatthree} alt="" />
+            <h5>{whatWeDo?.thirdHeading}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="se-our-rate" class="our-rate">
+    <div class="container">
+      <h3>Our Rates</h3>
+      <hr />
+      <div class="row">
+        <div class="col-md-3">
+          <div class="rate-left">
+            <img src={our_rate_image} alt="" />
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="rate-right">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="rate-block">
+                  <h5>{storageRates?.heading}</h5>
+                  <p>
+                    {storageRates?.description[0]?.children[0].text}
+                  </p>
+                  <p>
+                    {storageRates?.description[1]?.children[0].text}
+                  </p>
+                  <h6>No handling fees!</h6>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="rate-pattles">
+                  {#each storageRates?.rateOptions as option}
+                    <h4>{option.title}</h4>
+                    <div style="display: flex; align-items:end"><h5>{option.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">/{option.price.split('/')[1]}</p></div>
+                    <a href="#pickup-form"
+                      >{option.ctaText} <img src={right} alt="" /></a
+                    >
+                  {/each}
+
+                  <!-- <h4>pallets up to 96” h</h4>
+                  <h5>$60 <span>/month</span></h5>
+                  <a href="#">buy space now <img src={right} alt="" /></a> -->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7">
+                <div class="rate-block">
+                  <h5>{shippingRates?.heading}</h5>
+                  {#each shippingRates?.description as description}
+                    <p>
+                      {description?.children[0].text}
+                    </p>
+                  {/each}
+                  <!-- <p>
+                    {shippingRates?.description[1]?.children[0].text}
+                  </p>
+                  <p>
+                    The Pallet Hut can receive less than container loads (LCL),
+                    or full container/trailer loads (FCL), and store the
+                    palletized items until you are ready to move them again.
+                    When you are, complete the ship request form we’ll have your
+                    pallets moving within 1 business day.
+                  </p> -->
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="rate-pattles">
+                  {#each shippingRates?.rateDetails as rate}
+                    <h4>{rate.title}</h4>
+                    <div style="display: flex; align-items:end"><h5>{rate.price.split('/')[0]}</h5><p style="color: #8ab8b5; text-transform:uppercase;">{(rate.price.split('/').length>1) ? `/${rate.price.split('/')[1]}`:''} </p></div>
+                  {/each}
+                  <!-- <h4>additional pallets</h4>
+                  <h5>$45 <span>/each</span></h5> -->
+                  <a href="#pickup-form"
+                    >move pallets now <img src={right} alt="" /></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shipping-sec">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="shipping-left"></div>
+        </div>
+        <div class="col-md-9">
+          <div class="shipping-right">
+            <h3>{shippingSurcharges?.heading}:</h3>
+            <ul>
+              <li class="item-heading">
+                <span class="text-upper">Items</span>
+                <span class="text-upper">Item Fee</span>
+                <span class="text-upper">Location surcharges:</span>
+                <span class="text-upper">Fee</span>
+              </li>
+              {#each shippingSurcharges?.surcharges as item}
+                <li>
+                  <span >{item.item}</span>
+                  <span class="flex-center">{item.itemFee}</span>
+                  <span>{item.locations.join(", ")}</span>
+                  <span class="flex-center">{item.locationFee}</span>
+                </li>
+              {/each}
+              <!--<li>
+                <span>Power tailgate</span>
+                <span>Add $25</span>
+                <span>Tsawwassen, UBC, SFU</span>
+                <span>Add $20</span>
+              </li>
+              <li>
+                <span>Power tailgate</span>
+                <span>Add $25</span>
+                <span>Tsawwassen, UBC, SFU</span>
+                <span>Add $20</span>
+              </li>
+              <li>
+                <span>Power tailgate</span>
+                <span>Add $25</span>
+                <span>Tsawwassen, UBC, SFU</span>
+                <span>Add $20</span>
+              </li>
+              <li>
+                <span>Power tailgate</span>
+                <span>Add $25</span>
+                <span>Tsawwassen, UBC, SFU</span>
+                <span>Add $20</span>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section  id="faqs" class="faqs-sec">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="faq-left">
+            <h3>{faqs?.heading}</h3>
+            <div class="accordion" id="accordionExample">
+              {#each faqs?.questions as item, index}
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id={`headingOne${index}`}>
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#collapseOne-${index}`}
+                      aria-expanded="true"
+                      aria-controls={`collapseOne${index}`}
+                    >
+                      {item.question}
+                      <span class="plus"><img src={plus} alt="" /></span>
+                      <span class="minus"><img src={minus} alt="" /></span>
+                    </button>
+                  </h2>
+                  <div
+                    id={`collapseOne-${index}`}
+                    class="accordion-collapse collapse"
+                    aria-labelledby={`headingOne${index}`}
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <strong>{item.answer}</strong>
+                    </div>
+                  </div>
+                </div>
+              {/each}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="accordion-image">
+            <img src={faq_img} alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits" class="benifits-sec">
+    <div class="container">
+      <h3>{benefits?.heading}:</h3>
+      <div class="row">
+        {#each benefits?.benefitItems as item}
+          <div class="col-md-4">
+            <div class="benifit-inner">
+              <img class='benefits-icn' src={urlFor(item.icon).url()} alt="" />
+              <h4 class="benefits-title">{item.title}</h4>
+            </div>
+          </div>
+        {/each}
+        <!-- <div class="col-md-4">
+          <div class="benifit-inner">
+            <img src={camone} alt="" />
+            <h4>Fire <br /> protection</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="benifit-inner">
+            <img src={camone} alt="" />
+            <h4>Climate controlled <br />Storage</h4>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="benifit-inner">
+            <img src={camone} alt="" />
+            <h4>Sealed warehouse<br /> (no partitioning)</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="benifit-inner">
+            <img src={camone} alt="" />
+            <h4>Restricted access<br /> (staff members only)</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="benifit-inner">
+            <img src={camone} alt="" />
+            <h4>Centralized Location in<br /> Metro Vancouver</h4>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <section id="pickup-form" class="contact-from">
+    <div class="container">
+      <div class="contact-head">
+        <h3>General <br />Contact Form</h3>
+        <ul>
+          <li class="active"><span>contact form</span></li>
+          <li><span>pickup form</span></li>
+        </ul>
+      </div>
+
+      <!-- <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="First Name"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Last Name"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Company Name"/>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Phone #"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Email Address"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Company Address"/>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                               <select>
+                               <option>Service Requested</option>
+                                <option>Service Requested</option>
+                                 <option>Service Requested</option>
+                               </select>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="What are you storing?"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Number of Pallets"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Average WxLxH of pallets"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Approx. Total Weight"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="Approx. Storage Start Date"/>
+                            </div>
+                        </div>
+
+                         <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="APPROX. STORAGE END DATE"/>
+                            </div>
+                        </div>
+                         <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" placeholder="NEED OTHER SERVICES?"/>
+                            </div>
+                        </div>
+
+ <div class="col-md-12">
+                            <div class="form-group">
+                               <textarea placeholder="ADDITIONAL INFO"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <button type="submit">submit form <img src={rdarow} alt=""/></button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form> -->
+      <form on:submit|preventDefault={handleSubmit}>
+        <div class="row">
+          <!-- First Name -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+              class="input-placeholder"
+                type="text"
+                placeholder="First Name"
+                bind:value={formData.first_name}
+              />
+              {#if errors.first_name}
+                <span class="error">{errors.first_name}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Last Name -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Last Name"
+                bind:value={formData.last_name}
+              />
+              {#if errors.last_name}
+                <span class="error">{errors.last_name}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Company Name -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Company Name"
+                bind:value={formData.company_name}
+              />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Phone #"
+                bind:value={formData.phnoe_number}
+              />
+              {#if errors.phnoe_number}
+                <span class="error">{errors.phnoe_number}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Email Address"
+                bind:value={formData.email}
+              />
+              {#if errors.email}
+                <span class="error">{errors.email}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Company Address -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Company Address"
+                bind:value={formData.company_address}
+              />
+            </div>
+          </div>
+
+          <!-- Service Requested -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <select bind:value={formData.service_requested}>
+                <option value="">Select Service Area</option>
+                <option value="us-north">US-North</option>
+                <option value="us-south">US-South</option>
+                <option value="us-east">US-East</option>
+              </select>
+              {#if errors.service_requested}
+                <span class="error">{errors.service_requested}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Stored Item -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="What are you storing?"
+                bind:value={formData.what_are_you_storing}
+              />
+              {#if errors.what_are_you_storing}
+                <span class="error">{errors.what_are_you_storing}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Pallet Count -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="number"
+                placeholder="Number of Pallets"
+                bind:value={formData.pallets_number}
+              />
+              {#if errors.pallets_number}
+                <span class="error">{errors.pallets_number}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Pallet Dimensions -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Avg Pallet Dimensions (WxLxH)"
+                bind:value={formData.average_wxlxh_of_pallets}
+              />
+            </div>
+          </div>
+
+          <!-- Total Weight -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="number"
+                placeholder="Total Weight"
+                bind:value={formData.total_weight}
+              />
+              {#if errors.total_weight}
+                <span class="error">{errors.total_weight}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Storage Start Date -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="date"
+                placeholder="Storage Start Date"
+                bind:value={formData.storage_start_date}
+              />
+              {#if errors.storage_start_date}
+                <span class="error">{errors.storage_start_date}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Storage End Date -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="date"
+                placeholder="Storage End Date"
+                bind:value={formData.storage_end_date}
+              />
+              {#if errors.storage_end_date}
+                <span class="error">{errors.storage_end_date}</span>
+              {/if}
+            </div>
+          </div>
+
+          <!-- Additional Services -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Need Other Services?"
+                bind:value={formData.need_other_services}
+              />
+            </div>
+          </div>
+
+          <!-- Additional Info -->
+          <div class="col-md-12">
+            <div class="form-group">
+              <textarea
+                placeholder="Additional Information"
+                bind:value={formData.additional_info}
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <button type="submit">Submit Form<img src="/src/lib/assets/images/rdArrow.svg"/></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submission Message -->
+        {#if submissionMessage}
+          <div
+            class="submission-message"
+            class:success={submissionStatus === "success"}
+            class:error={submissionStatus === "error"}
+          >
+            {submissionMessage}
+          </div>
+        {/if}
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer-main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="footer-left">
+            <img src={logo} alt="" />
+            <p>161-3231 No. 6 Road. Richmond, BC <br /> Canada, V6V 1P6</p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="footer-right">
+            <ul>
+              <li><a href="#what-we-do">about</a></li>
+              <!-- <li><a href="#">Shop Now</a></li> -->
+              <li><a href="#faqs">f.a.qs</a></li>
+              <li><a href="#benefits">Benefits</a></li>
+              <li><a href="#pickup-form">contact us</a></li>
+            </ul>
+            <div class="sociallink">
+              <p>storage @pallethut.ca</p>
+              <p>250-250-2500(tbd)</p>
+              <!-- <div class="social">
+                <a href="#"><img src={fb} alt="" /> </a>
+                <a href="#"><img src={insta} alt="" /> </a>
+              </div> -->
+            </div>
+            <span class="social-cirlce">Website by the social circle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
