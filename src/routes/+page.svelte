@@ -1566,7 +1566,7 @@ section#pickup-form input:focus::-ms-input-placeholder { /* Edge 12 -18 */
 
           <div class="col-md-12">
             <div class="form-group">
-              <button type="submit">Submit Form<img src={rdArrow} alt=''/></button>
+              <button type="submit">Submit Form<img src={rdArrow} alt=""/></button>
             </div>
           </div>
         </div>
