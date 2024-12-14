@@ -12,7 +12,7 @@
   import accord from "$lib/assets/images/accord.png";
   import plus from "$lib/assets/images/plus.svg";
   import minus from "$lib/assets/images/minus.svg";
-  import rdArrow from "$lib/assets/images/rdarrow.svg";
+  import rdArrow from "$lib/assets/images/rdArrow.svg";
   import { z } from "zod";
   import { contactFormSchema, sanityClient, urlFor } from "$lib/sanity";
     // import { sendMail } from "$lib/server/email-config";
